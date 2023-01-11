@@ -15,6 +15,7 @@ program: ./linecount
 
 # don't change anything else
 $CMD > $TEST.myoutput
+echo "  Running: $CMD"
 if cmp -s $TEST.correct $TEST.myoutput; then
     echo "PASSES"; exit 0
 else
