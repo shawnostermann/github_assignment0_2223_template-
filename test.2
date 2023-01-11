@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# students must NOT change this file in any way!!!
+TEST=$0
+
+# this is the commandline to use
+CMD="./linecount input.1line input.3lines"
+
+# this is the correct output
+cat > $TEST.correct << ==EOF==
+program: ./linecount
+ 1	input.1line
+ 3	input.3lines
+==EOF==
+
+# don't change anything else
+$CMD > $TEST.myoutput
+if cmp -s $TEST.correct $TEST.myoutput; then
+    echo "PASSES"; exit 0
+else
+    echo "FAILS"
+    echo '==== output differences: < means the CORRECT output, > means YOUR output'
+    echo 'see man page for "diff" and "cat" with arguments "-vet" for details on the output'
+    diff $TEST.correct $TEST.myoutput | cat -evt
+    exit 99
+fi
